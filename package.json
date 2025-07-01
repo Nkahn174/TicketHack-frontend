@@ -1,0 +1,8 @@
+{
+  "name": "tickethack",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "moments": "^0.0.2"
+  }
+}

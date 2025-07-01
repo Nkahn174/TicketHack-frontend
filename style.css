@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+:root {
+    --primary-color : #4fab91;
+}
+/* reset css */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    font-family: inherit;
+    background: none;
+    color: inherit;
+}
+
+button, input, select, textarea {
+    font: inherit;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+/* reset css */
+
+body {
+    background-color: #f8f8f5;;
+}
+
+.container {
+    height: 100vh;
+    display: grid;
+    grid-template-rows: repeat(12, 1fr);
+    grid-template-columns: 1fr;  
+}
+
+header{
+    grid-row-start: 1;
+    grid-row-end: 2;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    height: 6vh;
+}
+
+.header-nav{
+    margin: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header-title {
+    color: var(--primary-color);
+}
+
+.nav {
+    width: 150px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-item {
+    margin: 10px;
+    padding: 5px;
+}
+
+.main {
+    grid-row-start: 2;
+    grid-row-end: 13;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    width: 100%;
+    height: 100%;
+    background-image: url('./images/background.jpg');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+}
+
+#title, #sub-title {
+    text-align: center;
+    color: #fff;
+}
+
+#title {
+    margin-top: 50px;
+    font-size: 36px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+#sub-title {
+    margin: 30px auto;
+    font-size: 28px;
+    letter-spacing: 1px;
+}
+
+.cards-container {
+    margin: auto;
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+    gap: 200px;
+}
+
+.cards{
+    margin: 20px;
+    padding: 10px;
+    width: 500px;
+    height: 600px;
+    background-color: white;
+    border-radius: 25px;
+    display: flex;              
+    flex-direction: column;
+}
+
+#search-container {
+    display: flex;
+    flex-direction: column;                
+    justify-content: space-around;
+}
+
+.input-trips {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    
+}
+
+.input-trips > input {
+    margin: 5px 20px;
+    height: 40px;
+    padding: 15px;
+    background-color: #f0f0ea;
+    border-radius: 5px;
+}
+
+.input-trips > #departure  {
+    border-bottom: 1px solid #666;
+}
+
+.input-date > input {
+    width: 90%;
+    height: 40px;
+    padding: 15px;
+    background-color: #f0f0ea;
+    border-radius: 5px;
+    margin: 5px 20px;
+}
+
+#btn-search {
+    margin: 5px 20px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #4fab91;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+/* card result */
+#result-container {
+    display: flex;
+}
+.divider {
+    margin: 15px auto;
+    width: 70%;
+    border: 2px solid green;
+}
+
+#result-img {
+    margin: 20px auto;
+    width: 300px;
+    height: 300px;
+}
+
+#result-text {
+    text-align: center;
+    font-size: 28px;
+    margin: 30px;
+    padding: 5px;
+}
+
+
+
