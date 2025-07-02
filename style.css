@@ -43,7 +43,8 @@ ul, ol {
 /* reset css */
 
 body {
-    background-color: #f8f8f5;;
+    background-color: #f8f8f5;
+    font-family: "Roboto", sans-serif;
 }
 
 .container {
@@ -97,13 +98,17 @@ header{
 }
 
 .content {
-   grid-row-start: 2;
+    grid-row-start: 2;
     grid-row-end: 13;
     grid-column-start: 1;
     grid-column-end: 2;
     width: 100%;
     height: 100%; 
     background-color: #f0f0ea;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 #title, #sub-title {
@@ -124,7 +129,7 @@ header{
 }
 
 .cards-container {
-    margin: auto;
+    margin: 20px auto;
     padding: 20px;
     display: flex;
     justify-content: space-around;
@@ -132,10 +137,10 @@ header{
 }
 
 .cards{
-    margin: 20px;
+    margin: 10px;
     padding: 10px;
     width: 500px;
-    height: 600px;
+    height: 450px;
     background-color: white;
     border-radius: 25px;
     display: flex;              
@@ -157,7 +162,7 @@ header{
 }
 
 .input-trips > input {
-    margin: 5px 20px;
+    margin: 1px 20px;
     height: 40px;
     padding: 15px;
     background-color: #f0f0ea;
@@ -202,8 +207,8 @@ header{
 
 #result-img {
     margin: 20px auto;
-    width: 300px;
-    height: 300px;
+    width: 200px;
+    height: 200px;
 }
 
 #result-text {
@@ -219,6 +224,24 @@ header{
 
 .btn-book {
     background-color: var(--primary-color);
+}
+
+
+/* carts.html  booking.html */
+.trips-container {
+    width: 70%;
+    height: 200px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #f8f8f5;
+    border-radius: 5px;
+}
+
+.trips-container>p {
+    margin: 20px;
+    font-size: 28px;
 }
 
 

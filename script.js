@@ -23,9 +23,6 @@ btnSearch.addEventListener('click', function(event) {
     const arrivalValue = document.querySelector('#arrival').value.trim();
     const dateValue = document.querySelector('#date').value.trim();
 
-    // console.log('departure: ', departureValue);
-    // console.log('arrival: ' , arrivalValue);
-    // console.log('date:  ', dateValue);
     fetch('http://localhost:3000/trips', {
         method: 'POST',
         headers: {'Content-Type' : 'application/json'},
@@ -36,8 +33,6 @@ btnSearch.addEventListener('click', function(event) {
         })
     }) .then(response => response.json())
     .then(data => {
-       
-
         if(data.result) {
             let trips = data.tripsfound;
             let ulElement = document.createElement('ul');
