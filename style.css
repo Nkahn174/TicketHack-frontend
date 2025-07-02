@@ -263,7 +263,7 @@ header{
 /* carts.html  booking.html */
 .trips-container {
     width: 70%;
-    height: 200px;
+    height: auto;
     text-align: center;
     display: flex;
     flex-direction: column;

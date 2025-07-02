@@ -1,0 +1,48 @@
+#booking-title {
+    margin: 20px;
+    font-size: 24px;;
+}
+
+#booking-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100px;
+}
+
+.booking-item{
+    padding: 15px;
+    width: 80%;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #F6EEEF;
+}
+
+.divider-small{
+    margin: 20px auto;
+    width: 30%;
+    border: 1px solid #333;
+}
+
+#booking-text{
+    color: var(--primary-color);
+    font-size: 18px;
+}
+
+.booking-remainder{
+    display: flex;
+    gap: 10px;
+    
+}
+.icon > svg{
+    width: 15px;
+    height: 15px;
+    fill: red;
+}
+
+.booking-trip{
+    
+}

@@ -38,7 +38,12 @@ function eventListenerBook() {
                     // redirect to cart.html
                     window.location.assign('cart.html');
                 } else {
-                    console.log('error to save trips');
+                    Swal.fire({
+                    icon: 'error',
+                    title: 'Erreur',
+                    text: `Impossible d'ajouter le trajet au panier.
+                        le trajet n'est plus disponible`,
+                    });
                 }
             }) 
         });
