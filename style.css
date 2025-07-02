@@ -232,8 +232,45 @@ header {
 }
 
 .btn-book {
-  background-color: var(--primary-color);
+
+
+    background-color: var(--primary-color);
+    border-radius: 5px;
+    margin: auto;
+    padding: 2px;
+    width: 50px;
+    height: 30px;
+    color: #fff;
 }
+
+.list-trips {
+    max-height: 400px;   
+    overflow-y: auto;   
+    padding-right: 8px; 
+}
+
+.list-trips > li {
+    width: 90%;
+    height: 45px;
+    margin: 10px auto;
+    background-color: #f0f0ea;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 5px;
+}
+
+.text-trips {
+    width: 100%;
+    margin: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.text-trips > span {
+    margin: 10px;
+}
+
 
 /* carts.html  booking.html */
 .trips-container {
