@@ -1,34 +1,28 @@
-{
-  /* <div id="myCart">
-  <ul id="tripsInCart">
-    <li class="tripChoosen"></li>
-  </ul>
-  <div id="cartBottom">
-    <p id="total"></p>
-    <button id="purchase"></button>
-  </div>
-</div>; */
-}
-function deleteATrip(buttonElement, id) {
+let total = 0;
 
-  buttonElement.addEventListener("click", function () {
+function recalculateTotal() {
+  let elem = document.querySelectorAll('.prix');
+  let newPrice = 0;
+  elem.forEach(e => {
+    let price = parseFloat(e.textContent.replace('€', '').trim());
+    newPrice += price;
+  });
+  document.querySelector('#total').textContent = newPrice;
+}
+
+function deleteATrip(buttonelement, id) {
+  buttonelement.addEventListener("click", function () {
     fetch("http://localhost:3000/carts/trips", {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ _id: id }),
-    })
-      .then((res) => res.json())
-      .then((data) => console.log("Suppression :", data))
-      .then(() => {
-        // Remove the trip from the cart display
-        const tripElement = buttonElement.closest(".trip");
-        if (tripElement) {
-          tripElement.remove();
-        }
-        // Optionally, you can update the total price here
-        // totalPrice();
-      })
-      .catch((err) => console.error("Erreur :", err));
+      body: JSON.stringify({ id }),
+    }).then(response => response.json())
+    .then(data => {
+      if(data.result) {
+        this.parentNode.parentNode.remove();
+        recalculateTotal();
+      }
+    });
   });
 }
 
@@ -64,30 +58,32 @@ function fillCart() {
             });
             //console.log(data.cart[each]._id)
             document.querySelector("#tripsInCart").innerHTML += `
-            <li class="trip" data-id=${each._id}>
+            <li class="trip" data-id=${data.cart[each]._id}>
             <span>${dataObject.departure} > ${dataObject.arrival}</span>
             <span class='heure'>${heureLocale}</span>
             <span class='prix'>${dataObject.price}€</span>
             <span>
-                <button class="delete-button" data-id=${each._id}></button>
+                <button class="delete-button" data-id=${data.cart[each]._id}>X</button>
             </span>
             </li>
             `;
             total += Number(dataObject.price);
           }
         }
+        document.querySelector('#total').textContent = total;
+
+        for(let btnDelete of document.querySelectorAll(".delete-button")){
+          const id = btnDelete.getAttribute("data-id");
+          deleteATrip(btnDelete, id);
+        };
+        let purchase = document.querySelector('#purchase');
+        if (purchase) addToBookings(purchase);
       }
     });
-    for(let i=0; i<document.querySelectorAll(".delete-button").length; i++){
-    console.log('hello')
-    const id = button.getAttribute("data-id");
-    const button = document.querySelectorAll(".delete-button")[i];
-    deleteATrip(button, id);
-  };
 }
 
 function addToBookings() {
-  document.querySelector("#purchase").addEventListener("click", function () {
+  purchase.addEventListener("click", function () {
     const trips = document.querySelectorAll(".trip");
     let promises = [];
     for (let i = 0; i < trips.length; i++) {
@@ -105,12 +101,12 @@ function addToBookings() {
     // Quand toutes les requêtes sont terminées, on redirige
     Promise.all(promises)
       .then(() => {
-        window.location.href = "booking.html";
+        window.location.href = "bookings.html";
       })
       .catch((err) => console.error("Error updating booking:", err));
   });
 }
 
 fillCart();
-addToBookings();
+//addToBookings();
 
