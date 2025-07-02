@@ -274,14 +274,14 @@ header {
 
 /* carts.html  booking.html */
 .trips-container {
-  width: 70%;
-  height: 40%;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background-color: #f8f8f5;
-  border-radius: 5px;
+    width: 70%;
+    height: auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #f8f8f5;
+    border-radius: 5px;
 }
 
 .trips-container > p {
