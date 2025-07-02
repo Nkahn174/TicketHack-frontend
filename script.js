@@ -2,18 +2,47 @@ const resultContainer = document.querySelector('#result-container');
 
 function createListTrips(trip) {
     const date = moment(trip.date);
+    // li element
     let newLi = document.createElement('li');
     newLi.classList.add('item-trip');
+    // text elements
     let newTrips = document.createElement('div');
-    let newContentText = document.createTextNode(`${trip.departure} > ${trip.arrival} ${date.format('hh:mm')} ${trip.price}`);
-    newTrips.appendChild(newContentText);
-    let newBtnBookDiv = document.createElement('div');
+    newTrips.classList.add('text-trips');
+    newTrips.innerHTML = `<span>${trip.departure} > ${trip.arrival}</span><span>${date.format('hh:mm')}</span><span>${trip.price}</span>`;
+    // btn element
     let newBtn = document.createElement('button');
     newBtn.classList.add('btn-book');
     newBtn.textContent = "Book";
-    newBtnBookDiv.appendChild(newBtn);
-    newLi.append(newTrips, newBtnBookDiv);
+    newBtn.dataset.objId = trip._id;
+    // append all element
+    newLi.append(newTrips, newBtn);
     return newLi;
+}
+
+function eventListenerBook() {
+    let btnsBook = document.querySelectorAll('.btn-book');
+    for(let btnBook of btnsBook) {
+        btnBook.addEventListener('click', function() {
+            let id = this.dataset.objId;
+            console.log('click => ', id);
+            fetch('http://localhost:3000/carts/trips', {
+                method: 'POST',
+                headers: { 'Content-Type' : 'application/json' },
+                body: JSON.stringify({
+                    id
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data.result) {
+                    // redirect to cart.html
+                    window.location.assign('cart.html');
+                } else {
+                    console.log('error to save trips');
+                }
+            }) 
+        });
+    }
 }
 
 const btnSearch = document.querySelector('#btn-search');
@@ -43,8 +72,7 @@ btnSearch.addEventListener('click', function(event) {
             }
             resultContainer.innerHTML = "";
             resultContainer.append(ulElement);
-            console.log(data);
-
+            eventListenerBook();
         } else {
             const imgResult = document.querySelector('#result-img');
             const textResult = document.querySelector('#result-text');
