@@ -1,13 +1,40 @@
-{
-  /* <div id="myCart">
-  <ul id="tripsInCart">
-    <li class="tripChoosen"></li>
-  </ul>
-  <div id="cartBottom">
-    <p id="total"></p>
-    <button id="purchase"></button>
-  </div>
-</div>; */
+// {
+//   /* <div id="myCart">
+//   <ul id="tripsInCart">
+//     <li class="tripChoosen"></li>
+//   </ul>
+//   <div id="cartBottom">
+//     <p id="total"></p>
+//     <button id="purchase"></button>
+//   </div>
+// </div>; */
+// }
+let total = 0;
+
+function recalculateTotal() {
+  let elem = document.querySelectorAll('.prix');
+  let newPrice = 0;
+  elem.forEach(e => {
+    let price = parseFloat(e.textContent.replace('€', '').trim());
+    newPrice += price;
+  });
+  document.querySelector('#total').textContent = newPrice;
+}
+
+function deleteATrip(buttonelement, id) {
+  buttonelement.addEventListener("click", function () {
+    fetch("http://localhost:3000/carts/trips", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id }),
+    }).then(response => response.json())
+    .then(data => {
+      if(data.result) {
+        this.parentNode.parentNode.remove();
+        recalculateTotal();
+      }
+    });
+  });
 }
 
 function fillCart() {
@@ -25,8 +52,8 @@ function fillCart() {
                 </ul>
             <div>    
             <div id="cartBottom">
-                    <p id="total"></p>
-                    <button id="purchase"></button>
+                    <p>Total : <span id="total"></span> €</p>
+                    <button id="purchase">Purchase</button>
             </div>
         </div>;
             `; //possible de changer ".trips-container" en id?
@@ -44,35 +71,25 @@ function fillCart() {
             document.querySelector("#tripsInCart").innerHTML += `
             <li class="trip">
             <span>${dataObject.departure} > ${dataObject.arrival}</span>
-            <span id='heure'>${heureLocale}</span>
-            <span id='prix'>${dataObject.price}€</span>
+            <span class='heure'>${heureLocale}</span>
+            <span class='prix'>${dataObject.price}€</span>
             <span>
-                <button class="delete-button" data-id=${data.cart[each]._id}></button>
+                <button class="delete-button" data-id=${data.cart[each]._id}>X</button>
             </span>
             </li>
             `;
+            total += Number(dataObject.price);
           }
         }
+        document.querySelectorAll('.delete-button').forEach(button => {
+        const id = button.getAttribute('data-id');
+        deleteATrip(button, id);
+        });
+        
+        document.querySelector('#total').textContent = total;
       }
     });
 }
-document.querySelectorAll('.delete-button').forEach(button => {
-  const id = button.getAttribute('data-id');
-  deleteATrip(button, id);
-})
-
-function deleteATrip(buttonelement, id) {
-  buttonelement.addEventListener("click", function () {
-        this.parentNode.remove();
-
-        fetch("http://localhost:3000/carts/trips", {
-          method: "DELETE",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ _id: id }),
-        });
-      });
-  }
-
 
 // function addToBookings() {}
 

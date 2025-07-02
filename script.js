@@ -8,7 +8,7 @@ function createListTrips(trip) {
     // text elements
     let newTrips = document.createElement('div');
     newTrips.classList.add('text-trips');
-    newTrips.innerHTML = `<span>${trip.departure} > ${trip.arrival}</span><span>${date.format('hh:mm')}</span><span>${trip.price}</span>`;
+    newTrips.innerHTML = `<span>${trip.departure} > ${trip.arrival}</span><span>${date.format('hh:mm')}</span><span>${trip.price} €</span>`;
     // btn element
     let newBtn = document.createElement('button');
     newBtn.classList.add('btn-book');
